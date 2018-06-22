@@ -1,0 +1,27 @@
+#服务配置
+server:
+  port: 7090 
+  session-timeout: 30  
+  tomcat.max-threads: 0  
+  tomcat.uri-encoding: UTF-8
+  context-path: /movie
+  
+#数据库配置
+spring:  
+  application:
+    name: provider-movie
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://wyc:123456@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    
+provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+logging:
+  level:
+    com.cloud.provider.movie.feign.AccountFeignClient: DEBUG # 将Feign接口的日志级别设置成DEBUG，因为Feign的Logger.Level只对DEBUG作出响应。

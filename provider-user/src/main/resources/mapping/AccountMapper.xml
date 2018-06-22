@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.provider.mapper.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.provider.entity.Account" >
+    <id column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="SMALLINT" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_withdraw" property="isWithdraw" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cloud.provider.entity.Account" extends="BaseResultMap" >
+    <result column="account_info" property="accountInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, account_name, account_type, del_flag, create_time, update_time, is_withdraw
+  </sql>
+  <sql id="Blob_Column_List" >
+    account_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yc_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yc_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.provider.entity.Account" >
+    insert into yc_account (account_id, account_name, account_type, 
+      del_flag, create_time, update_time, 
+      is_withdraw, account_info)
+    values (#{accountId,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}, #{accountType,jdbcType=SMALLINT}, 
+      #{delFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isWithdraw,jdbcType=BIT}, #{accountInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.provider.entity.Account" >
+    insert into yc_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isWithdraw != null" >
+        is_withdraw,
+      </if>
+      <if test="accountInfo != null" >
+        account_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=SMALLINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWithdraw != null" >
+        #{isWithdraw,jdbcType=BIT},
+      </if>
+      <if test="accountInfo != null" >
+        #{accountInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.provider.entity.Account" >
+    update yc_account
+    <set >
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=SMALLINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWithdraw != null" >
+        is_withdraw = #{isWithdraw,jdbcType=BIT},
+      </if>
+      <if test="accountInfo != null" >
+        account_info = #{accountInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cloud.provider.entity.Account" >
+    update yc_account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=SMALLINT},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_withdraw = #{isWithdraw,jdbcType=BIT},
+      account_info = #{accountInfo,jdbcType=LONGVARCHAR}
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.provider.entity.Account" >
+    update yc_account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=SMALLINT},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_withdraw = #{isWithdraw,jdbcType=BIT}
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+  	 select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yc_account
+  </select>
+</mapper>

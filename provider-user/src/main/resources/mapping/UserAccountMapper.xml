@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.provider.mapper.UserAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.provider.entity.UserAccount" >
+    <id column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="account_capital" property="accountCapital" jdbcType="DECIMAL" />
+    <result column="account_number" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="invite_code" property="inviteCode" jdbcType="VARCHAR" />
+    <result column="last_login" property="lastLogin" jdbcType="BIGINT" />
+    <result column="last_login_mode" property="lastLoginMode" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="recommend_number" property="recommendNumber" jdbcType="VARCHAR" />
+    <result column="register_time" property="registerTime" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="wb" property="wb" jdbcType="VARCHAR" />
+    <result column="wx" property="wx" jdbcType="VARCHAR" />
+    <result column="xcx" property="xcx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, account_capital, account_number, invite_code, last_login, last_login_mode, 
+    password, pay_password, qq, recommend_number, register_time, status, uid, user_type, 
+    username, wb, wx, xcx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.provider.entity.UserAccount" >
+    insert into t_user_account (account_id, account_capital, account_number, 
+      invite_code, last_login, last_login_mode, 
+      password, pay_password, qq, 
+      recommend_number, register_time, status, 
+      uid, user_type, username, 
+      wb, wx, xcx)
+    values (#{accountId,jdbcType=BIGINT}, #{accountCapital,jdbcType=DECIMAL}, #{accountNumber,jdbcType=VARCHAR}, 
+      #{inviteCode,jdbcType=VARCHAR}, #{lastLogin,jdbcType=BIGINT}, #{lastLoginMode,jdbcType=INTEGER}, 
+      #{password,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{recommendNumber,jdbcType=VARCHAR}, #{registerTime,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{uid,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{wb,jdbcType=VARCHAR}, #{wx,jdbcType=VARCHAR}, #{xcx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.provider.entity.UserAccount" >
+    insert into t_user_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountCapital != null" >
+        account_capital,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="inviteCode != null" >
+        invite_code,
+      </if>
+      <if test="lastLogin != null" >
+        last_login,
+      </if>
+      <if test="lastLoginMode != null" >
+        last_login_mode,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="recommendNumber != null" >
+        recommend_number,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="wb != null" >
+        wb,
+      </if>
+      <if test="wx != null" >
+        wx,
+      </if>
+      <if test="xcx != null" >
+        xcx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="accountCapital != null" >
+        #{accountCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogin != null" >
+        #{lastLogin,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginMode != null" >
+        #{lastLoginMode,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendNumber != null" >
+        #{recommendNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="wb != null" >
+        #{wb,jdbcType=VARCHAR},
+      </if>
+      <if test="wx != null" >
+        #{wx,jdbcType=VARCHAR},
+      </if>
+      <if test="xcx != null" >
+        #{xcx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.provider.entity.UserAccount" >
+    update t_user_account
+    <set >
+      <if test="accountCapital != null" >
+        account_capital = #{accountCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogin != null" >
+        last_login = #{lastLogin,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginMode != null" >
+        last_login_mode = #{lastLoginMode,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendNumber != null" >
+        recommend_number = #{recommendNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="wb != null" >
+        wb = #{wb,jdbcType=VARCHAR},
+      </if>
+      <if test="wx != null" >
+        wx = #{wx,jdbcType=VARCHAR},
+      </if>
+      <if test="xcx != null" >
+        xcx = #{xcx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.provider.entity.UserAccount" >
+    update t_user_account
+    set account_capital = #{accountCapital,jdbcType=DECIMAL},
+      account_number = #{accountNumber,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      last_login = #{lastLogin,jdbcType=BIGINT},
+      last_login_mode = #{lastLoginMode,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      recommend_number = #{recommendNumber,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      wb = #{wb,jdbcType=VARCHAR},
+      wx = #{wx,jdbcType=VARCHAR},
+      xcx = #{xcx,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+</mapper>
