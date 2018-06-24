@@ -36,6 +36,7 @@ public class MovieController {
 
 	@RequestMapping("/list")
 	public String getList() {
+		// 提交代码测试
 		return "hello list";
 		// return restTemplate.getForObject("http://localhost:8090/user",
 		// List.class);
